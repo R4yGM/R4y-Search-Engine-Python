@@ -1,4 +1,3 @@
-#https://www.googleapis.com/customsearch/v1?key=AIzaSyBFxFPELb5R6rg8iUOBfKYgixfSDNqOG9s&page&cx=017576662512468239146:omuauf_lfve&q=TOSEARCH
 import sys
 sys.path.insert(1, 'plug/')
 from progress_bar import ProgressBar
@@ -19,7 +18,7 @@ def Initialize(API_KEY):
 
 def Search(a):
     pageLimit = 1000000
-    service = Initialize("AIzaSyBFxFPELb5R6rg8iUOBfKYgixfSDNqOG9s")
+    service = Initialize("YOUR_KEY")
     startIndex = 1
     response = []
 
@@ -29,7 +28,7 @@ def Search(a):
         
         response.append(service.cse().list(
             q=a, 
-            cx='001132580745589424302:jbscnf14_dw',  
+            cx='YOUR_CX',  
             lr='lang_en', 
             start=startIndex
         ).execute())
@@ -42,15 +41,13 @@ def Search(a):
             
         print(nPage+1)
         print("Total time :",response[nPage].get("searchInformation").get("searchTime"))
-        #print("Total time :"+response[nPage].get("searchInformation").get("searchTime"))
-        #print("Total time: "+resp['searchInformation']['searchTime'])
-        #print("Total results: "+resp[nPage]["searchInformation"]["formattedTotalResults"])
         print("Results: ")
-        #items = response[nPage].items
         ab = 0
-        for i in response[nPage].get("items") :           
-            print(response[nPage]["items"][ab]["title"])
-            print(response[nPage]["items"][ab]["link"])
+        for i in response[nPage].get("items") :
+            print("---------------------------------------")
+            print("Title : ",response[nPage]["items"][ab]["title"])
+            print("Link :",response[nPage]["items"][ab]["link"])
+            print("--------------------------------------")
             ab = ab + 1
         print("Page : ",nPage+1)
         #startIndex = response[nPage].get("queries").get("nextPage")[0].get("startIndex")
